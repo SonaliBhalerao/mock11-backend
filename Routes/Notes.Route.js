@@ -18,7 +18,15 @@ noteRoute.post('/createNote', async(req, res)=>{
         description
     });
     await newNote.save();
-    res.send({message : "Note created successfully", newNote});
+    res.send({message : "Note Created Successfully", newNote});
+})
+
+noteRoute.delete('/notes/delete/:id', async(req, res)=>{
+    const id = req.params.id;
+    
+    const note = await NotesModel.findOne({_id: id});
+    const newNote = await NotesModel.findOneAndDelete({_id: id});
+    return res.send("Note Deleted Successfully!")
 })
 
 module.exports = noteRoute

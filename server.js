@@ -6,6 +6,8 @@ const cors = require('cors');
 const authentication = require("./Middleware/authentication")
 const jwt = require("jsonwebtoken")
 const noteRoute = require('./Routes/Notes.Route');
+const bookmarkRoute = require('./Routes/Bookmark.Route');
+
 
 const {connection} = require("./db.js");
 const PORT = process.env.PORT || 8000
@@ -18,6 +20,7 @@ app.get("/", async(req, res)=>{
 });
 
 app.use("/",noteRoute);
+app.use("/",bookmarkRoute);
 
 app.listen(PORT, async()=>{
     try{
